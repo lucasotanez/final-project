@@ -6,11 +6,33 @@ See shared Google Drive for more documentation.
 
 > Note: We can change the name of this repository once we decide on a project title
 
-# Frontend
+# Development
 
-### Development
-Start by cloning this repository.
+Start by cloning this repository. There will be 2 separate directories: frontend and backend.
 
+```
+final-project-201/
+  - backend/
+  - frontend/
+  - README.md
+```
+
+We can work on frontend and backend independently via these two directories.
+
+## Backend
+Working on the backend is exactly the same as working on any other project
+in 201. The backend directory in this repo is an Eclipse workspace. Select it
+as your workspace in Eclipse and you can write code just as you have for every other assignment.
+
+Your Eclipse workspace path will vary depending on where you cloned this repo, but
+it should end with `/final-project-201/backend`.
+
+### Stack
+- Java 14
+- Gson (probably)
+- MySQL & JDBC
+
+## Frontend
 To do anything, you will need to install [NodeJS](https://nodejs.org/en) and *npm* (comes with Node). 
 
 Then, navigate to `~/frontend/` in your terminal and
@@ -38,6 +60,3 @@ can write CSS directly in your HTML (TSX in this case).
     useful and searching for styles is simple.
     - **NOTE**: Tailwind is not necessary. Navigate to `~/frontend/src/app/globals.css` to
     write and apply vanilla CSS.
-
-# Backend
-We will do this in Java.
