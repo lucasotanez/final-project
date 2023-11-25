@@ -1,9 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Open_Sans } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import Navbar from './Navbar'
 
-const os = Open_Sans({ subsets: ['latin'] })
+const os = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Grocery Tracker',

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Permanent+Marker&display=swap');
 
 @layer base {
   .main {
@@ -8,6 +9,8 @@
     top: 0;
     height: 100vh;
     width: 100vw;
+    font-family: 'Inter', 'sans-serif';
+
   }
 }
 
@@ -16,4 +19,30 @@
   #navbar a {
     @apply py-7 overflow-hidden px-2 text-center hover:drop-shadow-sm duration-100
   }
+
+  #navbar a, #navbar p {
+    @apply text-gray-400;
+  }
+
+  .green-button {
+    @apply rounded-lg bg-green-500 px-16 py-4 text-white w-64 hover:underline my-8;
+  }
+
+  h1 {
+    @apply text-4xl font-bold;
+  }
+
+  h2 {
+    @apply text-2xl font-bold;
+  }
+
+  h3 {
+    @apply text-lg font-bold;
+  }
+
+  .input1 {
+    @apply w-72 border-b-2 border-black my-16 focus:border-green-500
+      py-4 px-8 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none duration-100;
+  }
+
 }
