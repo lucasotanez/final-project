@@ -30,10 +30,12 @@ export default function Login() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       
-       <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-        <div className="test bg-green-500 opacity-20 absolute" style={{ width:  '600px', height:'600px', borderRadius:'50%',top: '-10%', left: '-15%' }}></div>
-        <div className="test bg-green-500 opacity-20 absolute" style={{ width:  '600px', height:'600px', borderRadius:'50%',bottom: '-10%', right: '-15%' }}></div>
-       </div>
+       <div className="absolute z-[-1]" style={{ width: '600px', height: '600px', top: '-10%', left: '-15%' }}>
+        <div className="bg-green-500 opacity-20 absolute" style={{ width: '100%', height: '100%', borderRadius: '50%' }}></div>
+      </div>
+      <div className="absolute z-[-1]" style={{ width: '600px', height: '600px', bottom: '-15%', right: '-20%' }}>
+        <div className="bg-green-500 opacity-20 absolute" style={{ width: '100%', height: '100%', borderRadius: '50%' }}></div>
+      </div> 
       
       <div className="align-left">
         <h1>Welcome Back!</h1>
