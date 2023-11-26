@@ -9,7 +9,13 @@ export default function Page() {
   function LoginButtonUI() {
     let sid = sessionStorage.getItem("SID");
     if (sid) {
-      return <></>;
+      return (
+        <div className="flex flex-col h-36 mb-10">
+          <Link href="/dashboard">
+            <button className="green-button">Dashboard</button>
+          </Link>
+        </div>
+      )
     } else return (
       <div className="flex flex-col h-36 mb-10">
         <Link href="/signup">
@@ -24,7 +30,8 @@ export default function Page() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className="text-green-600 text-6xl font-extrabold mt-10">Shop Like a Chef</h1>
+      <img src='/home.png' alt='background image' className="absolute -z-10 top-12 bottom-0 w-full overflow-hidden max-h-full object-cover"></img>
+      <h1 className="text-white text-7xl font-extrabold mt-10 backdrop-blur-md rounded-xl px-8 py-4">Shop Like a Chef</h1>
 
       < LoginButtonUI />
 
