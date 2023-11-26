@@ -36,6 +36,12 @@ export default function Signup() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    
+       <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+        <div className="test bg-green-500 opacity-20 absolute" style={{ width:  '600px', height:'600px', borderRadius:'50%',top: '-10%', left: '-15%' }}></div>
+        <div className="test bg-green-500 opacity-20 absolute" style={{ width:  '600px', height:'600px', borderRadius:'50%',bottom: '-10%', right: '-15%' }}></div>
+       </div>
+      
       <div className="align-left">
         <h1>Let's Get Started!</h1>
         <h3>Provide a Username & Password</h3>
