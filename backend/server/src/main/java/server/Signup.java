@@ -13,8 +13,8 @@ import javax.servlet.http.*;
 import com.google.gson.Gson;
 import java.sql.*;
 
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Signup")
+public class Signup extends HttpServlet {
 	
 	private static Connection conn = null;
 
@@ -41,20 +41,23 @@ public class Login extends HttpServlet {
 		response.addHeader("Access-Control-Allow-Methods", "GET, OPTIONS, HEAD, PUT, POST, DELETE");
 
 		try {
-			ps = conn.prepareStatement("SELECT * FROM users WHERE username=? AND password=?");
+			ps = conn.prepareStatement("SELECT * FROM users WHERE username=?");
 			ps.setString(1, user);
-			ps.setString(2, password);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				// Auth success
-				System.out.println("Login success for " + user);
-				out.println(new Gson().toJson(user));
-			} else {
-				// Auth fail
-				System.out.println("Could not login");
+				// User already exists
+				System.out.println("User " + user + " already exists");
 				out.println("null");
+			} else {
+				// User can be created
+				System.out.println("Creating user " + user);
+
+				ps = conn.prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)");
+				ps.setString(1, user);
+				ps.setString(2, password);
+				ps.executeUpdate();
+				out.println(new Gson().toJson(user));
 			}
-			
 			
 			rs.close();
 			ps.close();
