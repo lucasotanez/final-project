@@ -30,7 +30,7 @@ export default function Navbar() {
           h-16 items-center text-center flex px-0 shadow-md bg-gray-50">
         <div className="flex flex-col ml-16">
           <Link href='/' className="flex flex-row items-center justify-center hover:text-gray-600">
-            <p className="ml-4 hidden md:block font-bold text-xl">Grocery App</p>
+            <p className="ml-4 hidden md:block font-bold text-xl">Chef'sList</p>
           </Link>
         </div>
 
