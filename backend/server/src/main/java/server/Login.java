@@ -32,7 +32,7 @@ public class Login extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-		connect("jdbc:mysql://localhost/grocery?user=root&password=root");
+		connect("jdbc:mysql://localhost/chefslist?user=root&password=root");
 
 		response.setStatus(200); // updated later as necessary
 		response.setContentType("application/json");
