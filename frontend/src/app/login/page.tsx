@@ -34,7 +34,7 @@ export default function Login() {
         <h3>Enter Your Username & Password</h3>
       </div>
 
-      <form onClick={ (e) => e.preventDefault() } className="flex flex-col items-center">
+      <form onClick={ (e) => e.preventDefault() } className="flex flex-col items-center pt-14">
         <input type="text" placeholder="Username" id="username" className="input1" required />
         <input type="password" placeholder="Password" id="password" className="input1" required />
         <button className="green-button" onClick={authenticate}>Login</button>
