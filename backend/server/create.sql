@@ -24,7 +24,7 @@ CREATE TABLE recipes (
 	recipe_title VARCHAR(255),
     recipe_ingredients TEXT,
 	recipe_directions TEXT,
-	recipe_link VARCHAR(255)
+	recipe_link TEXT
 );
 
 /* Each recipe's individual ingredients will be stored in this table. */

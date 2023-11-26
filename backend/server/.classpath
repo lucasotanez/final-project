@@ -15,5 +15,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="gson-2.8.9.jar"/>
 	<classpathentry kind="lib" path="mysql-connector-j-8.2.0.jar"/>
+	<classpathentry kind="lib" path="commons-csv-1.10.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
