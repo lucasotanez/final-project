@@ -9,6 +9,7 @@ export default function Dashboard() {
     router.push("/");
     router.refresh();
   }
+
   return (
     <main className="flex min-h-screen flex-col items-center p-24 w-full">
       <h2 className="text-green-600 text-6xl font-extrabold mt-10">Dashboard</h2>
@@ -26,7 +27,7 @@ export default function Dashboard() {
             <th className="border-none"></th>
             <th>Grocery Item</th>
             <th>Expiration Date</th>
-            <th>Quantity</th>
+            <th>Count</th>
           </tr>
           <tr>
           {/*

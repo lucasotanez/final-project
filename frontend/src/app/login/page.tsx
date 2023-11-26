@@ -6,14 +6,25 @@ export default function Login() {
   const router = useRouter();
 
   async function authenticate() {
-    console.log( (document.getElementById("username") as HTMLInputElement).value );
-    sessionStorage.setItem("SID", (document.getElementById("username") as HTMLInputElement).value)
+    let user = (document.getElementById("username") as HTMLInputElement).value;
+    if (!user || user == "")  return;
+    let password = (document.getElementById("password") as HTMLInputElement).value;
+    if (!password || password == "") return;
 
     // Check if login is valid.
     // If not valid, return from this function and show an error message
+    let response = await fetch("http://localhost:8080/server/Login?username=" + user + "&password=" + password, { cache: "no-store" });
+    let parsed = await response.json();
+    console.log(parsed);
 
-    router.replace("/dashboard");
-    router.refresh();
+    if (parsed) {
+      sessionStorage.setItem("SID", user)
+      router.replace("/dashboard");
+      router.refresh();
+    } else {
+      // authentication failed
+      return;
+    }
   }
 
   return (
