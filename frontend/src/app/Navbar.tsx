@@ -36,7 +36,7 @@ export default function Navbar() {
 
         <div id="space" className="text-left ml-0 mr-auto align-right"></div>
 
-        { Links() }
+        < Links />
 
         <div id="drop-btn" className="duration-100 hover:drop-shadow-nav md:hidden flex flex-col items-center justify-center text-white mx-10 px-2" >
           <svg id="btn-svg" className="duration-300 ease-in-out" width="30" height="30" viewBox="0 0 184 89" fill="none" xmlns="http://www.w3.org/2000/svg">
