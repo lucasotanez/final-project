@@ -19,7 +19,41 @@ export default function Dashboard() {
           duration-300 my-12 shadow-sm"/>
       </form>
 
-      <p>todo</p>
+      <div id="grocery-list" className="w-5/6">
+
+        <table>
+          <tr>
+            <th className="border-none"></th>
+            <th>Grocery Item</th>
+            <th>Expiration Date</th>
+            <th>Quantity</th>
+          </tr>
+          <tr>
+          {/*
+            <td><button className="rounded w-8 h-8 border-purple-700
+              bg-purple-300 border-2 font-extrabold text-purple-700">&#9148;</button></td>
+            <td>Carrot</td>
+            <td>22/12</td>
+            <td>4</td>
+            */}
+          </tr>
+          <tr>
+            <td><button className="rounded w-8 h-8 border-purple-700
+              bg-purple-300 border-2 font-extrabold text-purple-700">&#9148;</button></td>
+            <td>Carrot</td>
+            <td>22/12</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td><button className="rounded w-8 h-8 border-purple-700
+              bg-purple-300 border-2 font-extrabold text-purple-700">&#9148;</button></td>
+            <td className="item">Pancake Mix</td>
+            <td>22/14</td>
+            <td>1</td>
+          </tr>
+        </table>
+
+      </div>
 
     </main>
   )
