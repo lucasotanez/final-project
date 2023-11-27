@@ -24,6 +24,10 @@
     @apply text-gray-400;
   }
 
+  body {
+    @apply max-w-full overflow-x-hidden;
+  }
+
   .green-button {
     @apply rounded-lg bg-green-500 px-16 py-4 text-white w-64 hover:underline my-8;
   }

@@ -30,7 +30,7 @@ export default function Login() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       
-       <div className="absolute z-[-1]" style={{ width: '600px', height: '600px', top: '-10%', left: '-15%' }}>
+      <div className="absolute z-[-1]" style={{ width: '600px', height: '600px', top: '-10%', left: '-15%' }}>
         <div className="bg-green-500 opacity-20 absolute" style={{ width: '100%', height: '100%', borderRadius: '50%' }}></div>
       </div>
       <div className="absolute z-[-1]" style={{ width: '600px', height: '600px', bottom: '-15%', right: '-20%' }}>
