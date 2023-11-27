@@ -34,8 +34,10 @@ public class Signup extends HttpServlet {
 
 		connect("jdbc:mysql://localhost/GROCERY_SCHEMA?user=root&password=root");
 
-		response.setStatus(200); // updated later as necessary
+		response.setStatus(200); 
 		response.setContentType("application/json");
+		
+		// Set CORS headers
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.addHeader("Access-Control-Allow-Headers", "*");
 		response.addHeader("Access-Control-Allow-Methods", "GET, OPTIONS, HEAD, PUT, POST, DELETE");
@@ -64,7 +66,7 @@ public class Signup extends HttpServlet {
 			conn.close();
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
