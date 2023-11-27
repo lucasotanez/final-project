@@ -38,6 +38,54 @@ export default function Dashboard() {
     }
   }
 
+  function ItemEntry(name : string, date : string, count : string) {
+
+  let removeBtn : JSX.Element;
+  let dateEntry : JSX.Element;
+
+  // Check if items are expired and choose UI (colors) accordingly
+  if (new Date().getTime() > new Date(date).getTime()) {
+    // Color date & remove button red
+    removeBtn = 
+      (<button className="rounded w-8 h-8 border-red-700
+      bg-red-300 border-2 font-extrabold text-red-700"
+      onClick={ (e) => removeItem(e.currentTarget) }>&#9148;</button>);
+    dateEntry = (<td className="text-red-700">{date}</td>);
+  } else {
+    // Color remove button default
+    removeBtn = 
+      (<button className="rounded w-8 h-8 border-purple-700
+      bg-purple-300 border-2 font-extrabold text-purple-700"
+      onClick={ (e) => removeItem(e.currentTarget) }>&#9148;</button>);
+    dateEntry = (<td>{date}</td>);
+  }
+
+  return (
+    <tr>
+      <td>{removeBtn}</td>
+      <td>{name}</td>
+      { dateEntry }
+      <td>{count}</td>
+    </tr>
+  )};
+
+  async function removeItem(e : HTMLElement) {
+    let username = sessionStorage.getItem("SID");
+    let grocery_name = (e.parentNode?.nextSibling as HTMLElement)?.innerHTML;
+    let expiration_date = (e.parentNode?.nextSibling?.nextSibling as HTMLElement)?.innerHTML;
+    let count = (e.parentNode?.nextSibling?.nextSibling?.nextSibling as HTMLElement)?.innerHTML;
+    await fetch("http://localhost:8080/server/DeleteGrocery?username=" + username + "&item=" + grocery_name + "&expiration_date=" + expiration_date + "&count=" + count, { next: { revalidate: 10 } })
+    .then( response => response.json() )
+    .then( response => {
+      if (response) {
+        getItems();
+      } else {
+        // Couldn't add item
+        return;
+      }
+    });
+  }
+
   useEffect( () => {
     getItems();
   }, []);
