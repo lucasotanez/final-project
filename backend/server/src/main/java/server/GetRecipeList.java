@@ -48,7 +48,7 @@ public class GetRecipeList extends HttpServlet{
 			rs = ps.executeQuery();
 			int user_id = -1;
 			if (rs.next()) {
-				rs.getInt("user_id");
+				user_id = rs.getInt("user_id");
 			} else {
 				throw new Exception("user does not exist");
 			}
@@ -65,7 +65,6 @@ public class GetRecipeList extends HttpServlet{
 			}
 			
 			ArrayList<String> ingredients = new ArrayList<String>(set);
-			
 
 			//given a list of ingredients, return a list of recipes that includes at least one of either ingredient. sort by recipe that contains the most ingredients first
 			// limit results to 20, since the number of returned recipes may be large
