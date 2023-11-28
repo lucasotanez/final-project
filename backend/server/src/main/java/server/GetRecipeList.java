@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +27,6 @@ public class GetRecipeList extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
-		String[] ingredients = request.getParameterValues("ingredient");
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		connect("jdbc:mysql://localhost/GROCERY_SCHEMA?user=root&password=root");
@@ -40,16 +42,42 @@ public class GetRecipeList extends HttpServlet{
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		try {
+			// get the user id from the username
+			ps = conn.prepareStatement("SELECT * FROM users WHERE username=?");
+			ps.setString(1, username);
+			rs = ps.executeQuery();
+			int user_id = -1;
+			if (rs.next()) {
+				rs.getInt("user_id");
+			} else {
+				throw new Exception("user does not exist");
+			}
+
+			// get the list of ingredients for that user
+			// store ingredients in set to avoid duplicates
+			Set<String> set = new HashSet<String>();
+			ps = conn.prepareStatement("SELECT grocery_name FROM groceries WHERE user_id = ?");
+			ps.setInt(1, user_id);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				set.add(rs.getString("grocery_name"));
+			}
+			
+			ArrayList<String> ingredients = new ArrayList<String>(set);
+			
+
 			//given a list of ingredients, return a list of recipes that includes at least one of either ingredient. sort by recipe that contains the most ingredients first
+			// limit results to 20, since the number of returned recipes may be large
 			ps = conn.prepareStatement("SELECT r.recipe_id, r.recipe_title, COUNT(DISTINCT ri.ingredient) AS matching_ingredients_count " +
                     "FROM recipes r " +
                     "JOIN recipe_ingredients_ner ri ON r.recipe_id = ri.recipe_id " +
-                    "WHERE ri.ingredient IN (" + preparePlaceholders(ingredients.length) + ") " +
+                    "WHERE ri.ingredient IN (" + preparePlaceholders(ingredients.size()) + ") " +
                     "GROUP BY r.recipe_id, r.recipe_title " +
-                    "ORDER BY matching_ingredients_count DESC");
+                    "ORDER BY matching_ingredients_count DESC LIMIT 20");
 			
-			for (int i = 0; i < ingredients.length; i++) {
-	            ps.setString(i + 1, ingredients[i]);
+			for (int i = 0; i < ingredients.size(); i++) {
+	            ps.setString(i + 1, ingredients.get(i));
 	        }
 			
 			rs = ps.executeQuery();
