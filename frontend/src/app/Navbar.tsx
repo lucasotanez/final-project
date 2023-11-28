@@ -8,6 +8,7 @@ export default function Navbar() {
     if (userSID) { return (
       <div id="otherlinks" className="hidden md:block mr-32">
         <Link href='/dashboard' className="ml-16 hover:text-gray-600">Dashboard</Link>
+        <Link href='/recipes' className="ml-16 hover:text-gray-600">Recipes</Link>
         <Link href='/' className="ml-16 text-green-400 hover:text-green-300" onClick={logout}>Logout</Link>
       </div>
     )} else { return (

@@ -1,7 +1,7 @@
 "use client"
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import ItemEntry from './ItemEntry';
+import Link from 'next/link'
 
 export default function Dashboard() {
 
@@ -40,34 +40,35 @@ export default function Dashboard() {
 
   function ItemEntry(name : string, date : string, count : string) {
 
-  let removeBtn : JSX.Element;
-  let dateEntry : JSX.Element;
+    let removeBtn : JSX.Element;
+    let dateEntry : JSX.Element;
 
-  // Check if items are expired and choose UI (colors) accordingly
-  if (new Date().getTime() > new Date(date).getTime()) {
-    // Color date & remove button red
-    removeBtn = 
-      (<button className="rounded w-8 h-8 border-red-700
-      bg-red-300 border-2 font-extrabold text-red-700"
-      onClick={ (e) => removeItem(e.currentTarget) }>&#9148;</button>);
-    dateEntry = (<td className="text-red-700">{date}</td>);
-  } else {
-    // Color remove button default
-    removeBtn = 
-      (<button className="rounded w-8 h-8 border-purple-700
-      bg-purple-300 border-2 font-extrabold text-purple-700"
-      onClick={ (e) => removeItem(e.currentTarget) }>&#9148;</button>);
-    dateEntry = (<td>{date}</td>);
+    // Check if items are expired and choose UI (colors) accordingly
+    if (new Date().getTime() > new Date(date).getTime()) {
+      // Color date & remove button red
+      removeBtn = 
+        (<button className="rounded w-8 h-8 border-red-700
+        bg-red-300 border-2 font-extrabold text-red-700"
+        onClick={ (e) => removeItem(e.currentTarget) }>&#9148;</button>);
+      dateEntry = (<td className="text-red-700">{date}</td>);
+    } else {
+      // Color remove button default
+      removeBtn = 
+        (<button className="rounded w-8 h-8 border-purple-700
+        bg-purple-300 border-2 font-extrabold text-purple-700"
+        onClick={ (e) => removeItem(e.currentTarget) }>&#9148;</button>);
+      dateEntry = (<td>{date}</td>);
+    }
+
+    return (
+      <tr>
+        <td>{removeBtn}</td>
+        <td>{name}</td>
+        { dateEntry }
+        <td>{count}</td>
+      </tr>
+    )
   }
-
-  return (
-    <tr>
-      <td>{removeBtn}</td>
-      <td>{name}</td>
-      { dateEntry }
-      <td>{count}</td>
-    </tr>
-  )};
 
   async function removeItem(e : HTMLElement) {
     let username = sessionStorage.getItem("SID");
@@ -148,13 +149,7 @@ export default function Dashboard() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24 w-full">
-      <h2 className="text-green-600 text-6xl font-extrabold mt-10">Dashboard</h2>
-
-      <form onClick={ (e) => e.preventDefault() } className="w-full flex flex-col items-center">
-        <input type="text" placeholder="Search here..." id="search" className="px-10 py-6 rounded-md
-          border-none outline-none hover:bg-gray-300 focus:outline-none w-5/6 bg-gray-200
-          duration-300 my-12 shadow-sm"/>
-      </form>
+      <h2 className="text-green-600 text-6xl font-extrabold mt-10 mb-12">Dashboard</h2>
 
       <div id="grocery-list" className="w-5/6">
         <table>
@@ -170,6 +165,9 @@ export default function Dashboard() {
 
       <button className="green-button" onClick={() => { addWindow ? setAddWindow(false) : setAddWindow(true) }}>Add Item</button>
       <ItemWindow />
+
+      <Link href='/recipes' className="text-gray-400 hover:text-gray-500 
+        hover:underline duration-100">Discover Recipes Based on These Ingredients! &rArr;</Link>
 
     </main>
   )
