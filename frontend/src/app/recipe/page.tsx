@@ -8,6 +8,7 @@ class recipeClass {
   recipeTitle : string = "";
   recipeIngredients : string = "";
   recipeDirections : string = "";
+  recipeLink : string = "";
 
 }
 
@@ -41,6 +42,8 @@ export default function Recipe() {
     getRecipe();
   }, [])
 
+  recipe.recipeLink = recipe.recipeLink.split("?")[0];
+
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
 
@@ -66,6 +69,11 @@ export default function Recipe() {
         <div className="mt-4 py-4 px-6 bg-gray-200 rounded-lg">
           <p>{recipe.recipeDirections}</p>
         </div>
+      </div>
+
+      <div className="flex flex-col items-center justify-center">
+        <Link href={recipe.recipeLink} className="text-gray-500 hover:text-gray-400
+          duration-100">{recipe.recipeLink}</Link>
       </div>
 
     </div>

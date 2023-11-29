@@ -100,7 +100,7 @@ export default function Recipes() {
   
     <div id="recipe-results" className="w-1/2 flex flex-col justify-left">
 
-      <h2>Just For You</h2>
+      <h2>Best Match</h2>
       <HighlightedRecipe />
 
       <h2 className="my-10">Other Recipes Based On Your Groceries</h2>
