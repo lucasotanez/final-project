@@ -18,7 +18,7 @@ export default function Dashboard() {
   function ItemWindow() {
     if (addWindow) {
       return (
-        <form onSubmit={(e) => e.preventDefault() } className="flex flex-row justify-center">
+        <form onSubmit={(e) => e.preventDefault() } className="flex flex-row justify-center mb-8">
           <input id="item-input" type="text" placeholder="Grocery Item" name="grocery_name" className="px-4 py-2 outline outline-1
             rounded mx-2 focus:outline-2 focus:outline-green-600 duration-100"></input>
           <input id="date-input" type="text" placeholder="Expiration Date" name="expiration_date" className="px-4 py-2 outline outline-1
@@ -149,7 +149,7 @@ export default function Dashboard() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24 w-full">
-      <h2 className="text-green-600 text-6xl font-extrabold mt-10 mb-12">Dashboard</h2>
+      <h2 className="text-green-600 text-6xl font-extrabold mt-10 mb-12 drop-shadow-md">Dashboard</h2>
 
       <div id="grocery-list" className="w-5/6">
         <table>
@@ -163,7 +163,7 @@ export default function Dashboard() {
         </table>
       </div>
 
-      <button className="green-button" onClick={() => { addWindow ? setAddWindow(false) : setAddWindow(true) }}>Add Item</button>
+      <button className="green-button drop-shadow-md" onClick={() => { addWindow ? setAddWindow(false) : setAddWindow(true) }}>Add Item</button>
       <ItemWindow />
 
       <Link href='/recipes' className="text-gray-400 hover:text-gray-500 

@@ -27,6 +27,7 @@ public class GetRecipeList extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
+
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		connect("jdbc:mysql://localhost/GROCERY_SCHEMA?user=root&password=root");
@@ -41,6 +42,9 @@ public class GetRecipeList extends HttpServlet{
 
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
+
+		JsonObject responseJson = new JsonObject();
+
 		try {
 			// get the user id from the username
 			ps = conn.prepareStatement("SELECT * FROM users WHERE username=?");
@@ -60,9 +64,10 @@ public class GetRecipeList extends HttpServlet{
 			ps.setInt(1, user_id);
 			rs = ps.executeQuery();
 			
-			while (rs.next()) {
-				set.add(rs.getString("grocery_name"));
-			}
+			if (rs.next()) set.add(rs.getString("grocery_name"));
+			else throw new Exception("user has no groceries");
+
+			while (rs.next()) set.add(rs.getString("grocery_name"));
 			
 			ArrayList<String> ingredients = new ArrayList<String>(set);
 
@@ -80,8 +85,6 @@ public class GetRecipeList extends HttpServlet{
 	        }
 			
 			rs = ps.executeQuery();
-			
-			JsonObject responseJson = new JsonObject();
 
             int i = 0;
             while (rs.next()) {
@@ -96,6 +99,8 @@ public class GetRecipeList extends HttpServlet{
 
                 responseJson.add(Integer.toString(i++), recipeObject);
             }
+            
+            if (i == 0) throw new Exception("no grocery results");
 
 			out.println(new Gson().toJson(responseJson));
 
@@ -106,6 +111,8 @@ public class GetRecipeList extends HttpServlet{
 			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			responseJson.addProperty("noResult", true);
+			out.println(new Gson().toJson(responseJson));
 		}
 		
 	}
