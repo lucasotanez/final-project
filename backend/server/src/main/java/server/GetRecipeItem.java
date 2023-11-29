@@ -67,7 +67,7 @@ public class GetRecipeItem extends HttpServlet{
 		}
 		
 	}
-
+// connect to jdbc
 	private static void connect(String url) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
